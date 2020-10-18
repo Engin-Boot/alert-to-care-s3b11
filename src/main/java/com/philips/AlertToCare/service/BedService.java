@@ -3,6 +3,7 @@ package com.philips.AlertToCare.service;
 import com.philips.AlertToCare.entities.Bed;
 import com.philips.AlertToCare.exceptions.*;
 import com.philips.AlertToCare.repository.BedRepository;
+import com.philips.AlertToCare.repository.DeviceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,13 +18,16 @@ public class BedService {
         this.bedRepository = bedRepository;
     }
 
+    @Autowired
+    private DeviceService deviceService;
+
     /*public void save(Bed bed) {
         bedRepository.save(bed);
     }*/
 
     public void createBeds(int bedCount, String clientId){
         for(int i=0; i<bedCount; i++){
-            Bed bed = new Bed(Integer.toString(i+1), clientId, "Vacant" );
+            Bed bed = new Bed(Integer.toString(i+1), deviceService.getDeviceIdForBedId(Integer.toString(i+1)), clientId, "Vacant" );
             bedRepository.save(bed);
         }
     }
@@ -71,5 +75,20 @@ public class BedService {
         bedRepository.save(bed);
     }
 
+    public void updateDeviceForABed(String bedId, String newDeviceId)
+    {
+        deviceService.makeBedIdNullForRemovedDevice(bedId);
+        deviceService.createNewDevice(newDeviceId, bedId);
+        Bed bed = bedRepository.findById(bedId).get();
+        bed.setDeviceId(newDeviceId);
+        bedRepository.save(bed);
+    }
 
+    public Bed getBedDetails(String bedId){
+        return bedRepository.findById(bedId).get();
+    }
+
+    public List<Bed> getAllBeds(){
+        return bedRepository.findAll();
+    }
 }

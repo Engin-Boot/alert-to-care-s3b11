@@ -6,13 +6,13 @@ public class Device {
     @Id
     private String deviceId;
     private String bedId;
-    private String spo2;
-    private String respRate;
-    private String bpm;
+    private int spo2;
+    private int respRate;
+    private int bpm;
 
     public Device(){}
 
-    public Device(String deviceId, String bedId, String spo2, String respRate, String bpm) {
+    public Device(String deviceId, String bedId, int spo2,int respRate, int bpm) {
         this.deviceId = deviceId;
         this.bedId = bedId;
         this.spo2 = spo2;
@@ -34,24 +34,24 @@ public class Device {
         this.bedId = bedId;
     }
 
-    public String getSpo2() {
+    public int getSpo2() {
         return spo2;
     }
-    public void setSpo2(String spo2) {
+    public void setSpo2(int spo2) {
         this.spo2 = spo2;
     }
 
-    public String getRespRate() {
+    public int getRespRate() {
         return respRate;
     }
-    public void setRespRate(String respRate) {
+    public void setRespRate(int respRate) {
         this.respRate = respRate;
     }
 
-    public String getBpm() {
+    public int getBpm() {
         return bpm;
     }
-    public void setBpm(String bpm) {
+    public void setBpm(int bpm) {
         this.bpm = bpm;
     }
 

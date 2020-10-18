@@ -6,15 +6,15 @@ public class Bed{
 
     @Id
     private String bedId;
-    //private String deviceId;
+    private String deviceId;
     private String clientId;
     private String bedStatus;
 
     public Bed(){}
 
-    public Bed(String bedId, String clientId, String bedStatus) {
+    public Bed(String bedId, String deviceId,String clientId, String bedStatus) {
         this.bedId = bedId;
-        //this.deviceId = deviceId;
+        this.deviceId = deviceId;
         this.clientId = clientId;
         this.bedStatus = bedStatus;
     }
@@ -26,12 +26,12 @@ public class Bed{
         this.clientId = clientId;
     }
 
-    /*public String getDeviceId() {
+    public String getDeviceId() {
         return deviceId;
     }
     public void setDeviceId(String deviceId) {
         this.deviceId = deviceId;
-    }*/
+    }
 
     public String getBedStatus() {
         return bedStatus;
