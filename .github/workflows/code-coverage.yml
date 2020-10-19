@@ -10,7 +10,7 @@ on:
       - main
 defaults:
   run:
-    working-directory: /
+    working-directory: main
 jobs:
   code-coverage:
 
