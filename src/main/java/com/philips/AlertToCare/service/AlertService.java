@@ -58,4 +58,8 @@ public class AlertService {
         }
         return alert;
     }
+
+    public List<Alert> getAllAlerts(){
+        return alertRepository.findAll();
+    }
 }

@@ -1,7 +1,5 @@
 package com.philips.AlertToCare.controller;
 
-import com.philips.AlertToCare.entities.Bed;
-import com.philips.AlertToCare.entities.Client;
 import com.philips.AlertToCare.entities.Patient;
 import com.philips.AlertToCare.exceptions.BedNotEmptyException;
 import com.philips.AlertToCare.exceptions.ICUDoesNotExistException;
@@ -15,7 +13,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 @RestController
@@ -32,11 +29,8 @@ public class OccupancyController {
 
     @PostMapping("/client/patient/admit")
     public ResponseEntity<Patient> createPatient(@RequestBody Patient patient) throws BedNotEmptyException {
-        System.out.println("Entered controller");
         bedService.changeBedStatusWhenPatientIsAdmitted(patient.getBedId());
-        System.out.println("Bed Status HAS been updated");
         Patient savedPatient = patientService.savePatient(patient);
-        System.out.println("saving patient");
         return new ResponseEntity<Patient>(savedPatient, HttpStatus.CREATED);
     }
 

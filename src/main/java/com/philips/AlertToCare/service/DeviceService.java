@@ -1,7 +1,6 @@
 package com.philips.AlertToCare.service;
 
 import com.philips.AlertToCare.entities.Device;
-import com.philips.AlertToCare.repository.BedRepository;
 import com.philips.AlertToCare.repository.DeviceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -75,5 +74,9 @@ public class DeviceService {
         else{
             return false;
         }
+    }
+
+    public List<Device> getAllDevices(){
+        return deviceRepository.findAll();
     }
 }

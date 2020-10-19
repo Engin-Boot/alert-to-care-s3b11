@@ -2,9 +2,7 @@ package com.philips.AlertToCare.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import java.util.Dictionary;
 import java.util.HashMap;
-import java.util.Map;
 
 @Entity
 public class Client {

@@ -2,6 +2,7 @@ package com.philips.AlertToCare.controller;
 
 import com.philips.AlertToCare.entities.Bed;
 import com.philips.AlertToCare.entities.Client;
+import com.philips.AlertToCare.entities.Device;
 import com.philips.AlertToCare.exceptions.ClientAlreadyExistsException;
 import com.philips.AlertToCare.service.BedService;
 import com.philips.AlertToCare.service.ClientService;
@@ -29,11 +30,8 @@ public class ConfigurationController {
     @PostMapping("/client/config")
     public ResponseEntity<Client> configureClient(@RequestBody Client client) throws ClientAlreadyExistsException {
         Client configuredClient = clientService.configureClient(client);
-        System.out.println("configuring client");
         deviceService.createDevices(client.getNoOfBeds(), client.getClientId());
-        System.out.println("creating devices");
         bedService.createBeds(client.getNoOfBeds(), client.getClientId());
-        System.out.println("saving beds");
         return new ResponseEntity<Client>(configuredClient, HttpStatus.CREATED);
     }
 
@@ -43,15 +41,20 @@ public class ConfigurationController {
         return new ResponseEntity<List<Client>>(allClients, HttpStatus.OK);
     }
 
-    @PostMapping("client/config/changedevice")
+    @PostMapping("client/config/changeDevice")
     public ResponseEntity<Bed> changeDevice(@RequestBody List<String> bedIdAndNewDeviceId){
         bedService.updateDeviceForABed(bedIdAndNewDeviceId.get(0), bedIdAndNewDeviceId.get(1));
         return new ResponseEntity<Bed>(bedService.getBedDetails(bedIdAndNewDeviceId.get(0)), HttpStatus.OK);
     }
 
-    @GetMapping("/client/allbeds")
+    @GetMapping("/client/allBeds")
     public ResponseEntity<List<Bed>> getAllBeds(){
         List<Bed> allBeds = bedService.getAllBeds();
         return new ResponseEntity<List<Bed>>(allBeds, HttpStatus.OK);
+    }
+
+    @GetMapping("/client/allDevices")
+    public ResponseEntity<List<Device>> getAllDevices(){
+        return new ResponseEntity<List<Device>>(deviceService.getAllDevices(), HttpStatus.OK);
     }
 }
