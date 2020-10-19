@@ -1,0 +1,21 @@
+Clone the Repository
+Run the main Java class on your preferred IDE
+Path to main class: alert-to-care-s3b11/src/main/java/com/philips/AlertToCare/AlertToCareApplication.java
+
+
+http://localhost:8080/client/config
+  JSON: {
+    "clientId":"",
+    "layout":"U",
+    "noOfBeds":"3"
+    }
+ 
+ http://localhost:8080/client/allClients
+ http://localhost:8080/client/config/changeDevice
+ http://localhost:8080/client/allBeds
+ http://localhost:8080/client/allDevices
+ http://localhost:8080/client/patient/admit
+ http://localhost:8080/client/patients
+ http://localhost:8080/client/patient/discharge/{patientId}
+ http://localhost:8080/client/monitor/{deviceId}
+ http://localhost:8080/client/allAlerts
