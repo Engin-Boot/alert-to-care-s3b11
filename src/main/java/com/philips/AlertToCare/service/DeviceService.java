@@ -10,6 +10,14 @@ import java.util.List;
 
 @Service
 public class DeviceService {
+
+    private final int minSpo2 = 90;
+    private final int maxSpo2 = 100;
+    private final int minRespRate = 70;
+    private final int maxRespRate = 110;
+    private final int minBpm = 80;
+    private final int maxBpm = 120;
+
     DeviceRepository deviceRepository;
 
     @Autowired
@@ -38,5 +46,34 @@ public class DeviceService {
         List<Device> devices = deviceRepository.findByBedId(bedId);
         devices.get(0).setBedId("null");
         deviceRepository.save(devices.get(0));
+    }
+
+    public boolean isSpo2InRange(int spo2){
+        if (spo2>=minSpo2 && spo2<=maxSpo2)
+        {
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public boolean isRespRateInRange(int respRate){
+        if (respRate>=minRespRate && respRate<=maxRespRate)
+        {
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    public boolean isBpmInRange(int bpm){
+        if (bpm>=minBpm && bpm<=maxBpm)
+        {
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 }
