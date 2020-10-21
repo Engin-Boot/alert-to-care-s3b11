@@ -5,7 +5,6 @@ import com.philips.AlertToCare.exceptions.BedNotEmptyException;
 import com.philips.AlertToCare.exceptions.ICUDoesNotExistException;
 import com.philips.AlertToCare.exceptions.PatientDoesNotExistException;
 import com.philips.AlertToCare.service.BedService;
-import com.philips.AlertToCare.service.ClientService;
 import com.philips.AlertToCare.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,7 +17,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/")
 public class OccupancyController {
-    @Autowired
+    /*@Autowired
     private PatientService patientService;
 
     @Autowired
@@ -47,6 +46,6 @@ public class OccupancyController {
         Patient dischargedPatient = patientService.dischargePatient(patientId.toString());
         bedService.changeBedStatusWhenPatientDischarged(dischargedPatient.getBedId());
         return new ResponseEntity<Patient>(dischargedPatient, HttpStatus.OK);
-    }
+    }*/
 
 }

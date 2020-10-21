@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public class DeviceService {
 
-    private final int minSpo2 = 90;
+    /*private final int minSpo2 = 90;
     private final int maxSpo2 = 100;
     private final int minRespRate = 70;
     private final int maxRespRate = 110;
@@ -78,5 +78,5 @@ public class DeviceService {
 
     public List<Device> getAllDevices(){
         return deviceRepository.findAll();
-    }
+    }*/
 }

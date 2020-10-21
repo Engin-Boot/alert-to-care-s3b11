@@ -21,6 +21,10 @@ public class Icu {
     
 	@Column(name = "icu_Maximum_Capacity")
 	private int icuMaximumCapacity;
+	
+	public Icu() {
+		
+	}
 
 	public Icu(int icuId, String layout, int icuMaximumCapacity) {
 		super();

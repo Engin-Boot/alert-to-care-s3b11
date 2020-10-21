@@ -18,9 +18,6 @@ public class Alert {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "alert_Id")
     private int alertId;
-    
-	@Column(name = "bed_Id")
-    private int bedId;
 	
 	@Column(name = "error_Message")
     private String errorMessage;
@@ -33,10 +30,9 @@ public class Alert {
     	
     }
 
-	public Alert(int alertId, int bedId, String errorMessage, Bed bed) {
+	public Alert(int alertId, String errorMessage, Bed bed) {
 		super();
 		this.alertId = alertId;
-		this.bedId = bedId;
 		this.errorMessage = errorMessage;
 		this.bed = bed;
 	}
@@ -47,14 +43,6 @@ public class Alert {
 
 	public void setAlertId(int alertId) {
 		this.alertId = alertId;
-	}
-
-	public int getBedId() {
-		return bedId;
-	}
-
-	public void setBedId(int bedId) {
-		this.bedId = bedId;
 	}
 
 	public String getErrorMessage() {
@@ -85,7 +73,7 @@ public class Alert {
     
 	@Override
 	public String toString() {
-	    return "Alert [ AlertId=" + alertId + ", bedId=" + bedId + ", errorMessage=" + errorMessage +"]";
+	    return "Alert [ AlertId=" + alertId + ", errorMessage=" + errorMessage +"]";
 	}
     
 

@@ -25,9 +25,6 @@ public class Patient {
     @Column(name = "age")
     private int age;
     
-    @Column(name = "bed_Id")
-    private int bedId;
-    
     @OneToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name="bed_Id")
 	Bed bed;
@@ -36,12 +33,11 @@ public class Patient {
     	
     }
 
-	public Patient(String patientId, String name, int age, int bedId, Bed bed) {
+	public Patient(String patientId, String name, int age, Bed bed) {
 		super();
 		this.patientId = patientId;
 		this.name = name;
 		this.age = age;
-		this.bedId = bedId;
 		this.bed = bed;
 	}
 
@@ -69,14 +65,6 @@ public class Patient {
 		this.age = age;
 	}
 
-	public int getBedId() {
-		return bedId;
-	}
-
-	public void setBedId(int bedId) {
-		this.bedId = bedId;
-	}
-
 	public Bed getBed() {
 		return bed;
 	}
@@ -97,7 +85,7 @@ public class Patient {
     
 	@Override
 	public String toString() {
-	    return "Patient [ patientId=" + patientId + ", name=" + name + ", age=" + age + " , bedId=" + bedId +"]";
+	    return "Patient [ patientId=" + patientId + ", name=" + name + ", age=" + age + "]";
 	}
     
 

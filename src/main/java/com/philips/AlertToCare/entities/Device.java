@@ -9,22 +9,25 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "device_info")
-
 public class Device {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "bed_Id")
+	@Column(name = "device_Id")
 	private int deviceId;
 	
 	@Column(name = "spo2")
 	private int spo2;
 	
-	@Column(name = "respRate")
+	@Column(name = "resp_Rate")
 	private int respRate;
 	
 	@Column(name = "bpm")
 	private int bpm;
+	
+	public Device() {
+		
+	}
 	
 	public Device(int deviceId, int spo2, int respRate, int bpm) {
 		super();

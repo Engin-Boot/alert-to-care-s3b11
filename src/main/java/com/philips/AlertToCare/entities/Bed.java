@@ -20,12 +20,6 @@ public class Bed{
 	@Column(name = "bed_Id")
     private int bedId;
     
-    @Column(name = "device_Id")
-    private int deviceId;
-    
-    @Column(name = "icu_Id")
-    private int icuId;
-    
     @Column(name = "bed_Status")
     private boolean bedStatus;
 
@@ -40,14 +34,11 @@ public class Bed{
     
     public Bed(){
     	
-    	
     }
 
-	public Bed(int bedId, int deviceId, int icuId, boolean bedStatus, Device device, Icu icu) {
+	public Bed(int bedId, boolean bedStatus, Device device, Icu icu) {
 		super();
 		this.bedId = bedId;
-		this.deviceId = deviceId;
-		this.icuId = icuId;
 		this.bedStatus = bedStatus;
 		this.device = device;
 		this.icu = icu;
@@ -59,22 +50,6 @@ public class Bed{
 
 	public void setBedId(int bedId) {
 		this.bedId = bedId;
-	}
-
-	public int getDeviceId() {
-		return deviceId;
-	}
-
-	public void setDeviceId(int deviceId) {
-		this.deviceId = deviceId;
-	}
-
-	public int getIcuId() {
-		return icuId;
-	}
-
-	public void setIcuId(int icuId) {
-		this.icuId = icuId;
 	}
 
 	public boolean isBedStatus() {
@@ -103,7 +78,7 @@ public class Bed{
 	
 	@Override
 	public String toString() {
-	    return "Bed [ BedId=" + bedId + ", DeviceId=" + deviceId + ", IcuId=" + icuId + " , BedStatus=" + bedStatus +"]";
+	    return "Bed [ BedId=" + bedId + " , BedStatus=" + bedStatus +"]";
 	}
 
 	

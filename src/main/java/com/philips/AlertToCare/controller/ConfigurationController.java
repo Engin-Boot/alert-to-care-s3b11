@@ -1,11 +1,9 @@
 package com.philips.AlertToCare.controller;
 
 import com.philips.AlertToCare.entities.Bed;
-import com.philips.AlertToCare.entities.Client;
 import com.philips.AlertToCare.entities.Device;
 import com.philips.AlertToCare.exceptions.ClientAlreadyExistsException;
 import com.philips.AlertToCare.service.BedService;
-import com.philips.AlertToCare.service.ClientService;
 import com.philips.AlertToCare.service.DeviceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,7 +16,7 @@ import java.util.List;
 @RequestMapping("/")
 public class ConfigurationController {
 
-    @Autowired
+    /*@Autowired
     private ClientService clientService;
 
     @Autowired
@@ -56,5 +54,5 @@ public class ConfigurationController {
     @GetMapping("/client/allDevices")
     public ResponseEntity<List<Device>> getAllDevices(){
         return new ResponseEntity<List<Device>>(deviceService.getAllDevices(), HttpStatus.OK);
-    }
+    }*/
 }

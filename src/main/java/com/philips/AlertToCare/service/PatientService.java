@@ -1,6 +1,5 @@
 package com.philips.AlertToCare.service;
 
-import com.philips.AlertToCare.entities.Client;
 import com.philips.AlertToCare.entities.Patient;
 import com.philips.AlertToCare.exceptions.ICUDoesNotExistException;
 import com.philips.AlertToCare.exceptions.PatientDoesNotExistException;
@@ -15,7 +14,7 @@ import java.util.UUID;
 
 @Service
 public class PatientService {
-    PatientRepository patientRepository;
+    /*PatientRepository patientRepository;
 
     @Autowired
     public PatientService(PatientRepository patientRepository){
@@ -58,5 +57,5 @@ public class PatientService {
             allPatients = patientRepository.findAll();
         }
         return allPatients;
-    }
+    }*/
 }
