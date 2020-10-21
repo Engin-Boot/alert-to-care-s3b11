@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.philips.AlertToCare.entities.Alert;
-import com.philips.AlertToCare.entities.Device;
 import com.philips.AlertToCare.utils.GenericUtils;
 
 @Transactional
@@ -20,13 +19,13 @@ public class JpaAlertDao {
 	private EntityManager em;
 	
 	
-	public Alert addAlert(Alert AlertEntity) {
-		em.persist(AlertEntity);
-		return AlertEntity;
+	public Alert addNewAlert(Alert alert) {
+		em.persist(alert);
+		return alert;
 	}
 	
-	public List<Alert> findAllAlerts() {
-
-		return GenericUtils.castList(Alert.class, em.createQuery("SELECT a FROM Alert a").getResultList());
+	public List<Alert> findAllAlerts(int bedId) {
+		
+		return GenericUtils.castList(Alert.class, em.createQuery("SELECT a FROM Alert a where a.bed.bedId = :paramId").setParameter("paramId", bedId).getResultList());
 	}
 }

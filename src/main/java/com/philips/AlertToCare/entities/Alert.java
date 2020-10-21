@@ -11,7 +11,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Alert_info")
+@Table(name = "alert_info")
 public class Alert {
 	
     @Id
@@ -59,15 +59,13 @@ public class Alert {
 
 	public void setBed(Bed bed) {
 		if(bed != null) {
-			this.bed = bed; 
-			this.bed.setBedStatus(false);
+			this.bed = bed;
 	    }
 	}
 	
 	public void freeBed(Bed bed) {
 		if(bed != null) {
 			this.bed = bed; 
-	        this.bed.setBedStatus(true);
 	    }
 	}
     

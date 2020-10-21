@@ -14,13 +14,13 @@ import java.util.List;
 @RequestMapping("/")
 public class MonitoringController {
 
-    @Autowired
+    /*@Autowired
     private AlertService alertService;
 
     @PostMapping("/client/monitor/{deviceId}")
     public ResponseEntity<List<Alert>> alertDispatcher(@RequestBody Device device) {
         List<Alert> alerts = alertService.checkVitals(device);
-        if (alerts.size()==0){
+        if (alerts.isEmpty()){
             return new ResponseEntity<List<Alert>>(alerts, HttpStatus.NO_CONTENT);
         } else {
             return new ResponseEntity<List<Alert>>(alerts, HttpStatus.CREATED);
@@ -31,5 +31,5 @@ public class MonitoringController {
     public ResponseEntity<List<Alert>> getAllAlerts(){
         List<Alert> allAlerts = alertService.getAllAlerts();
         return new ResponseEntity<List<Alert>>(allAlerts, HttpStatus.OK);
-    }
+    }*/
 }

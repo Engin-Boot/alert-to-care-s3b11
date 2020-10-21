@@ -1,6 +1,7 @@
 package com.philips.AlertToCare.service;
 
 import com.philips.AlertToCare.entities.Alert;
+import com.philips.AlertToCare.entities.Bed;
 import com.philips.AlertToCare.entities.Device;
 import com.philips.AlertToCare.repository.JpaAlertDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,58 +9,62 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @Service
 public class AlertService {
-    JpaAlertDao alertDao;
-
-    @Autowired
-    public AlertService(JpaAlertDao alertDao) {
-        this.alertDao =alertDao;
-    }
+    
+	@Autowired
+	JpaAlertDao alertDao;
+	
+	@Autowired
+	private BedService bedService;
 
     @Autowired
     private DeviceService deviceService;
 
-    public List<Alert> checkVitals(Device device)
+    public List<Alert> checkVitals(int deviceId, Device device)
     {
-        List<Alert> alerts = new ArrayList<Alert>();
+        List<Alert> alerts = new ArrayList<>();
+        int bedId = deviceService.getBedIdFromDeviceId(deviceId);
 
-        alerts.add(checkIsSpo2InRange(device));
-        alerts.add(checkIsRespRateInRange(device));
-        alerts.add(checkIsBpmInRange(device));
+        alerts.add(checkIsSpo2InRange(device.getSpo2(), bedId));
+        alerts.add(checkIsRespRateInRange(device.getRespRate(), bedId));
+        alerts.add(checkIsBpmInRange(device.getBpm(), bedId));
         return alerts;
     }
 
-    private Alert checkIsSpo2InRange(Device device){
-        Alert alert = null;
-        if(!deviceService.isSpo2InRange(device.getSpo2())){
-            alert = new Alert(UUID.randomUUID().toString(), device.getDeviceId(), device.getBedId(),"spo2", device.getSpo2());
-            alertDao.addAlert(alert);
-        }
+    private Alert checkIsSpo2InRange(int spo2, int bedId){
+        Alert alert = new Alert();
+        Bed bed = bedService.getBedById(bedId);
+        String status = deviceService.isSpo2InRange(spo2);
+    	alert.setBed(bed);
+    	alert.setErrorMessage("spo2 is " + status);
+        alertDao.addNewAlert(alert);
         return alert;
     }
 
-    private Alert checkIsRespRateInRange(Device device){
-        Alert alert = null;
-        if(!deviceService.isRespRateInRange(device.getRespRate())){
-            alert = new Alert(UUID.randomUUID().toString(), device.getDeviceId(), device.getBedId(),"respRate", device.getRespRate());
-            alertDao.addAlert(alert);
-        }
+    private Alert checkIsRespRateInRange(int respRate, int bedId){
+        Alert alert = new Alert();
+        Bed bed = bedService.getBedById(bedId);
+        String status = deviceService.isRespRateInRange(respRate);
+        alert.setBed(bed);
+    	alert.setErrorMessage("respRate is " + status);
+        alertDao.addNewAlert(alert);
         return alert;
     }
 
-    private Alert checkIsBpmInRange(Device device){
-        Alert alert = null;
-        if(!deviceService.isBpmInRange(device.getBpm())){
-            alert = new Alert(UUID.randomUUID().toString(), device.getDeviceId(), device.getBedId(),"bpm", device.getBpm());
-            alertDao.addAlert(alert);
-        }
+    private Alert checkIsBpmInRange(int bpm, int bedId){
+    	Alert alert = new Alert();
+        Bed bed = bedService.getBedById(bedId);
+        String status = deviceService.isBpmInRange(bpm);
+		alert.setBed(bed);
+    	alert.setErrorMessage("bpm is " + status);
+        alertDao.addNewAlert(alert);
         return alert;
     }
 
-    public List<Alert> getAllAlerts(){
-        return alertDao.findAllAlerts();
+    public List<Alert> getAllAlerts(int deviceId){
+    	int bedId = deviceService.getBedIdFromDeviceId(deviceId);
+        return alertDao.findAllAlerts(bedId);
     }
 }

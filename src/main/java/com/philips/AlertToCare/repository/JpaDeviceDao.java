@@ -16,25 +16,25 @@ import com.philips.AlertToCare.utils.GenericUtils;
 public class JpaDeviceDao {
 
 	@PersistenceContext
-	private EntityManager em;
+	private EntityManager eManager;
 	
 	
-	public Device addDevice(Device DeviceEntity) {
-		em.persist(DeviceEntity);
-		return DeviceEntity;
+	public Device addDevice(Device device) {
+		eManager.persist(device);
+		return device;
 	}
 	
 	public List<Device> findAllDevices() {
-
-		return GenericUtils.castList(Device.class, em.createQuery("SELECT d FROM Device d").getResultList());
+		return GenericUtils.castList(Device.class, eManager.createQuery("SELECT d FROM Device d").getResultList());
 	}
 	
-	public Device findDeviceById(int DeviceId){
-		
-		return em.find(Device.class, DeviceId);
+	public Device findDeviceById(int deviceId){
+		return eManager.find(Device.class, deviceId);
 	}
-	//findDeviceIdByBedId this will be in BedService or Dao Layer
-	//makeBedIdNullForRemovedDevice 
-
+	
+	public List<Integer> findBedIdFromDeviceId(int deviceId) {
+		
+		 return GenericUtils.castList(Integer.class, eManager.createQuery("Select b.bedId from Bed b inner join Device d on b.device.deviceId = d.deviceId where b.device.deviceId = :paramId").setParameter("paramId", deviceId).getResultList());
+	}
 	
 }

@@ -17,7 +17,7 @@ public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "patient_Id")
-    private String patientId;
+    private int patientId;
     
     @Column(name = "name")
     private String name;
@@ -33,7 +33,7 @@ public class Patient {
     	
     }
 
-	public Patient(String patientId, String name, int age, Bed bed) {
+	public Patient(int patientId, String name, int age, Bed bed) {
 		super();
 		this.patientId = patientId;
 		this.name = name;
@@ -41,11 +41,11 @@ public class Patient {
 		this.bed = bed;
 	}
 
-	public String getPatientId() {
+	public int getPatientId() {
 		return patientId;
 	}
 
-	public void setPatientId(String patientId) {
+	public void setPatientId(int patientId) {
 		this.patientId = patientId;
 	}
 

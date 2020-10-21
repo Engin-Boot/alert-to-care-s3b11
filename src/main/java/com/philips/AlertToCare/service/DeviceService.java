@@ -13,65 +13,61 @@ public class DeviceService {
 	@Autowired
 	JpaDeviceDao deviceDao;
 	
-    private final int minSpo2 = 90;
-    private final int maxSpo2 = 100;
-    private final int minRespRate = 70;
-    private final int maxRespRate = 110;
-    private final int minBpm = 80;
-    private final int maxBpm = 120;
+    private static final int MINSPO2 = 90;
+    private static final int MAXSPO2 = 100;
+    private static final int MINRESPRATE = 70;
+    private static final int MAXRESPRATE = 110;
+    private static final int MINBPM = 80;
+    private static final int MAXBPM = 120;
 
-
-    @Autowired
-    public DeviceService(JpaDeviceDao deviceDao) {
-        this.deviceDao = deviceDao;
+    public String isSpo2InRange(int spo2){
+        if(spo2 < MINSPO2)
+        {
+            return "low";
+        }
+        else if(spo2 > MAXSPO2) {
+        	return "high";
+        }
+        else{
+            return "normal";
+        }
     }
 
-
-   /* public String getDeviceIdForBedId(String bedId){
-        Device device = deviceRepository.findByBedId(bedId);
-        return devices.get(0).getDeviceId();
-    }*/
-
-    public void createNewDevice(Device deviceEntity){
+    public String isRespRateInRange(int respRate){
+        if(respRate < MINRESPRATE)
+        {
+            return "low";
+        }
+        else if(respRate > MAXRESPRATE) {
+        	return "high";
+        }
+        else{
+            return "normal";
+        }
+    }
+    public String isBpmInRange(int bpm){
+        if(bpm < MINBPM)
+        {
+            return "low";
+        }
+        else if(bpm > MAXBPM) {
+        	return "high";
+        }
+        else{
+            return "normal";
+        }
+    }
+    
+    public void addNewDevice(Device deviceEntity){
         deviceDao.addDevice(deviceEntity);
     }
-
-    /*public void makeBedIdNullForRemovedDevice(String bedId){
-        List<Device> devices = deviceRepository.findByBedId(bedId);
-        devices.get(0).setBedId("null");
-        deviceRepository.save(devices.get(0));
-    }*/
-
-    public boolean isSpo2InRange(int spo2){
-        if (spo2>=minSpo2 && spo2<=maxSpo2)
-        {
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
-
-    public boolean isRespRateInRange(int respRate){
-        if (respRate>=minRespRate && respRate<=maxRespRate)
-        {
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
-    public boolean isBpmInRange(int bpm){
-        if (bpm>=minBpm && bpm<=maxBpm)
-        {
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
-
+    
     public List<Device> getAllDevices(){
         return deviceDao.findAllDevices();
+    }
+    
+    public int getBedIdFromDeviceId(int deviceId) {
+    	List<Integer> result = deviceDao.findBedIdFromDeviceId(deviceId);
+    	return result.get(0);
     }
 }

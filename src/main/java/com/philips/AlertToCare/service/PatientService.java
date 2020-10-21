@@ -1,61 +1,56 @@
 package com.philips.AlertToCare.service;
 
-import com.philips.AlertToCare.entities.Patient;
-import com.philips.AlertToCare.exceptions.ICUDoesNotExistException;
-import com.philips.AlertToCare.exceptions.PatientDoesNotExistException;
-import com.philips.AlertToCare.repository.JpaPatientDao;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import com.philips.AlertToCare.entities.Bed;
+import com.philips.AlertToCare.entities.Patient;
+import com.philips.AlertToCare.repository.JpaBedDao;
+import com.philips.AlertToCare.repository.JpaPatientDao;
 
 @Service
 public class PatientService {
-    /*PatientRepository patientRepository;
+	
+	@Autowired
+	private JpaPatientDao patientDao;
+	
+	@Autowired
+    JpaBedDao bedDao;
+	
+	public List<Patient> getAllPatients() {
+		
+		return patientDao.findAllPatients();
+	}
 
-    @Autowired
-    public PatientService(PatientRepository patientRepository){
-        this.patientRepository = patientRepository;
-    }
+	public Patient getPatient(int patientId) {
+		return patientDao.findPatientById(patientId);
+	}
+	
+	public Patient addNewPatient(Patient patient, int bedId) {
+        Bed bed = bedDao.findBedById(bedId); 
+        if (bed == null) return null;
 
-    @Autowired
-    private ClientService clientService;
-
-    public Patient savePatient(Patient patient){
-        String patientId = UUID.randomUUID().toString();
-        patient.setPatientId(patientId);
-        return patientRepository.save(patient);
-    }
-
-    public Patient dischargePatient(String patientId) throws PatientDoesNotExistException {
-        Patient patientToDischarge = getPatient(patientId);
-        patientRepository.delete(patientToDischarge);
-        return patientToDischarge;
-    }
-
-    private Patient getPatient(String patientId) throws PatientDoesNotExistException {
-        Optional<Patient> patient = patientRepository.findByPatientId(patientId);
-        if(patient.isPresent()){
-            return patient.get();
-        }
-        else{
-            throw new PatientDoesNotExistException("Patient does not exist with id = "+patientId);
+        if (bed.isBedStatus()) {
+        	patient.setBed(bed);
+        	return patientDao.addNewPatient(patient);
+        } else {
+            return null;
         }
     }
-
-    public List<Patient> getAllPatients() throws ICUDoesNotExistException {
-        List<Patient> allPatients = new ArrayList<>();
-        List<Client> allClients = clientService.getAllClients();
-        if (allClients.size()==0){
-            throw new ICUDoesNotExistException("No ICU configured");
+	
+	public boolean dischargePatient(int patientId, int bedId) {
+		Patient patient = patientDao.findPatientById(patientId);
+        if (patient == null) {
+        	return false;
         }
-        else{
-            Client client = allClients.get(0);
-            allPatients = patientRepository.findAll();
+        else {
+        	Bed bed = bedDao.findBedById(bedId);
+        	patient.freeBed(bed);
+        	patientDao.deletePatient(patientId);
         }
-        return allPatients;
-    }*/
+        return true;
+	} 
+	
 }
