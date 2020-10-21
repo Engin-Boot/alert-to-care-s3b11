@@ -13,7 +13,7 @@ import com.philips.AlertToCare.utils.GenericUtils;
 
 @Transactional
 @Repository
-public class BedRepository {
+public class JpaBedDao {
 
 	@PersistenceContext
 	private EntityManager em;

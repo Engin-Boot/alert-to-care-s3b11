@@ -3,7 +3,7 @@ package com.philips.AlertToCare.service;
 import com.philips.AlertToCare.entities.Patient;
 import com.philips.AlertToCare.exceptions.ICUDoesNotExistException;
 import com.philips.AlertToCare.exceptions.PatientDoesNotExistException;
-import com.philips.AlertToCare.repository.PatientRepository;
+import com.philips.AlertToCare.repository.JpaPatientDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

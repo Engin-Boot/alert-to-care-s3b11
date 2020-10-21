@@ -9,6 +9,6 @@ import java.util.Optional;
 
 @Transactional
 @Repository
-public interface PatientRepository{
+public interface JpaPatientDao{
 	
 }

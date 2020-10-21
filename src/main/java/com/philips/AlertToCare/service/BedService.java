@@ -1,7 +1,7 @@
 package com.philips.AlertToCare.service;
 
 import com.philips.AlertToCare.entities.Bed;
-import com.philips.AlertToCare.repository.BedRepository;
+import com.philips.AlertToCare.repository.JpaBedDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +11,7 @@ import java.util.*;
 public class BedService {
 	
 	@Autowired
-    BedRepository bedRepo;
+    JpaBedDao bedRepo;
 	
 	public List<Bed> getAllBeds() {
 		return bedRepo.findAllBeds();

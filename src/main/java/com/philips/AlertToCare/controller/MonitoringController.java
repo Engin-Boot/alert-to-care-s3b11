@@ -14,7 +14,7 @@ import java.util.List;
 @RequestMapping("/")
 public class MonitoringController {
 
-    /*@Autowired
+    @Autowired
     private AlertService alertService;
 
     @PostMapping("/client/monitor/{deviceId}")
@@ -31,5 +31,5 @@ public class MonitoringController {
     public ResponseEntity<List<Alert>> getAllAlerts(){
         List<Alert> allAlerts = alertService.getAllAlerts();
         return new ResponseEntity<List<Alert>>(allAlerts, HttpStatus.OK);
-    }*/
+    }
 }
