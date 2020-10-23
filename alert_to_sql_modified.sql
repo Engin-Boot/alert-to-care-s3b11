@@ -75,10 +75,3 @@ insert into alert_info(bed_Id,error_Message) values (9,'Vital is Normal');
 
 insert into patient_info(name,age,bed_Id) values ('ram',25,1);
 insert into patient_info(name,age,bed_Id) values ('ravi',24,9);
-
-Select * from patient_info;
-Select * from bed_info;
-Select * from device_info;
-Select * from alert_info;
-
-Select b.bed_Id from bed_info b inner join device_info d where b.device_Id = 3; 
