@@ -3,14 +3,14 @@
     <div class="card">
       <div class="card-body">
         <h4 class="card-title">Bed Id : {{data.bedId}}</h4>
-        <p class="card-text">Bed Status : {{data.bedStatus}}</p>
+        <p class="card-text">Bed Availability : {{data.bedStatus}}</p>
         <p class="card-text">Device Id : {{data.device.deviceId}}</p>
         <div *ngIf="data.bedStatus; else elseBlock">
-            <a class="btn btn-success" >Add Patient</a>
+            <a class="btn btn-success" [routerLink]="['/add-patient', data.bedId]">Add Patient</a>
         </div>
         <ng-template #elseBlock>
-            <a class="mr-1 btn btn-primary" >Discharge Patient</a>
-            <a class="mr-1 btn btn-primary" >Monitor Vitals</a>
+            <a class="mr-1 btn btn-primary" (click)="getPatientId(data.bedId)">Discharge Patient</a>
+            <a class="mr-1 btn btn-primary" [routerLink]="['/vitals-check', data.device.deviceId]">Monitor Vitals</a>
         </ng-template>
         
       </div>

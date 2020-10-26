@@ -1,0 +1,13 @@
+<form class="text-center border border-secondary p-5" #vitalsCheckForm="ngForm" (ngSubmit)="checkVitals(vitalsCheckForm.value)">
+
+    <p class="h4 mb-4">Add Vitals Data</p>
+
+    <input type="text" ngModel name="spo2" placeholder="Enter spo2" class="form-control mb-4">
+  
+    <input type="email" ngModel name="respRate" placeholder="Enter respRate" class="form-control mb-4">
+
+    <input type="email" ngModel name="bpm" placeholder="Enter bpm" class="form-control mb-4">
+  
+    <button class="btn btn-primary" block="true" type="submit">Check Vitals</button>
+  
+  </form>

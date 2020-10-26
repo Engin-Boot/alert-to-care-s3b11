@@ -1,0 +1,11 @@
+<form class="text-center border border-secondary p-5" #patientAdmissionForm="ngForm" (ngSubmit)="admitPatient(patientAdmissionForm.value)">
+
+    <p class="h4 mb-4">Add Patient Details</p>
+
+    <input type="text" ngModel name="name" placeholder="Enter Patient's Name" class="form-control mb-4">
+  
+    <input type="email" ngModel name="age" placeholder="Enter Patient's Age" class="form-control mb-4">
+  
+    <button class="btn btn-primary" block="true" type="submit" routeLink="/icus">Admit Patient</button>
+  
+  </form>
