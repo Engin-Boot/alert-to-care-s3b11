@@ -1,10 +1,11 @@
-<p>icus works!</p>
-<div *ngFor="let data of items">
-    <div>
-        <div>
-          <h3>Icu Number : {{data.icuId}}</h3>
-          <p>Icu Layout : {{data.layout}}</p>
-          <p>Icu Max Capacity : {{data.icuMaximumCapacity}}</p>
-        </div>
+<p class="h3">Icu Details</p>
+<div class="mb-3" *ngFor="let data of items">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">Icu Number : {{data.icuId}}</h4>
+      <p class="card-text">Icu Layout : {{data.layout}}</p>
+      <p class="card-text">Icu Max Capacity : {{data.icuMaximumCapacity}}</p>
+      <a [routerLink]="['/examine', data.icuId]" class="btn btn-primary" >Examine Patients</a>
     </div>
+  </div>
 </div>
