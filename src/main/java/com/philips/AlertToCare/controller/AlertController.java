@@ -33,4 +33,9 @@ public class AlertController {
         return new ResponseEntity<List<Alert>>(allAlerts, HttpStatus.OK);
     }
 
+	public void setAlertService(AlertService as) {
+		
+		
+	}
+
 }

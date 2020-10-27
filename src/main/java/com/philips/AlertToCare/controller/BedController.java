@@ -49,4 +49,9 @@ public class BedController {
 		return new ResponseEntity<>(beds, HttpStatus.OK);
 
 	}
+
+	public void setBedService(BedService bs) {
+	
+		
+	}
 }

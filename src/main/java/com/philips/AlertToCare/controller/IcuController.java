@@ -26,4 +26,9 @@ public class IcuController {
 		}
 		return new ResponseEntity<>(icus, HttpStatus.OK);
 	}
+
+	public void setIcuService(IcuService is) {
+
+		
+	}
 }

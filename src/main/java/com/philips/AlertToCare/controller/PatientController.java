@@ -78,4 +78,9 @@ public class PatientController {
 		}
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
+
+	public void setPatientService(PatientService ps) {
+		
+		
+	}
 }

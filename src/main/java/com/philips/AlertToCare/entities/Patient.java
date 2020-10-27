@@ -29,7 +29,7 @@ public class Patient {
 	@JoinColumn(name="bed_Id")
 	Bed bed;
 
-    Patient() {
+    public Patient() {
     	
     }
 
