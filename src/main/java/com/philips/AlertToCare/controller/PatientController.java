@@ -64,6 +64,18 @@ public class PatientController {
         }
     }
 	
+	@GetMapping("/patients/patientId/{bedId}")
+	public ResponseEntity<Patient> getPatientFromBedId(@PathVariable("bedId") int bedId){
+	        
+        Patient patient = patientService.getPatientFromBedId(bedId);
+
+        if (patient != null) {
+            return new ResponseEntity<>(patient, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+	
 	@DeleteMapping("/patients/{pid}")
 	public ResponseEntity<Patient> dischargePatient(@PathVariable("pid") int patientId){
 		
@@ -80,7 +92,6 @@ public class PatientController {
 	}
 
 	public void setPatientService(PatientService ps) {
-		
-		
+		this.patientService = ps;
 	}
 }

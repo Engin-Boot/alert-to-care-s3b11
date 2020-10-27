@@ -16,7 +16,7 @@ import com.philips.AlertToCare.entities.Device;
 import com.philips.AlertToCare.service.AlertService;
 
 
-public class AlertControllerTesting {
+public class AlertControllerTest {
 
 	@Test
     public void addNewAlertInfoTest() {

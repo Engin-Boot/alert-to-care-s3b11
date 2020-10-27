@@ -22,7 +22,7 @@ import com.philips.AlertToCare.repository.JpaAlertDao;
 @RunWith(SpringRunner.class)
 @DataJpaTest
 @Import(value = {JpaAlertDao.class })
-public class JapAlertDaoTesting {
+public class JapAlertDaoTests{
 
 		
 		@Autowired

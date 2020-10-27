@@ -40,6 +40,16 @@ public class PatientService {
         }
     }
 	
+	public Patient getPatientFromBedId(int bedId) {
+		Patient patient = patientDao.findPatientByBedId(bedId);
+		if(patient == null) {
+			return null;
+		}
+		else {
+			return patient;
+		}
+	}
+	
 	public boolean dischargePatient(int patientId, int bedId) {
 		Patient patient = patientDao.findPatientById(patientId);
         if (patient == null) {

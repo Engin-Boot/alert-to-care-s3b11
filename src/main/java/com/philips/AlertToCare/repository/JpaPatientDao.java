@@ -31,6 +31,11 @@ public class JpaPatientDao{
 		return patient;
 	}
 	
+	public Patient findPatientByBedId(int bedId) {
+		List<Patient> patients = GenericUtils.castList(Patient.class, eManager.createQuery("Select p from Patient as p join Bed as b on p.bed.bedId=b.bedId where b.bedId = :paramId").setParameter("paramId", bedId).getResultList());
+		return patients.get(0);
+	}
+	
 	public void deletePatient(int patientId) {
 		eManager.createQuery("DELETE from Patient WHERE patient_Id = :paramId").setParameter("paramId", patientId).executeUpdate();
 	}
