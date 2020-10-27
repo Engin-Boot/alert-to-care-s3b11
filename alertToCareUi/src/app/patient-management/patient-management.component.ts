@@ -34,18 +34,23 @@ export class PatientManagementComponent implements OnInit {
   getPatientId(value){
     this.http.get(`/api/patients/patientId/${value}`).toPromise().then(data => {
       let dataJson = JSON.parse(JSON.stringify(data));
-      this.dischargePatient(dataJson.patientId);
       console.log(dataJson.patientId);
+      this.dischargePatient(dataJson.patientId);
     });
 
     
   }
 
   dischargePatient(patientId){
-    this.http.delete("/api/patients/" + patientId).subscribe(data =>{
-      console.log(data);
-      this.router.onSameUrlNavigation = 'reload';
-    });
+    var result = window.confirm("Discharge Patient?");
+    if(result){
+      this.http.delete("/api/patients/" + patientId).subscribe(data =>{
+        window.alert("Patient Discharged");
+      });
+    }
+    else{
+      window.alert("Could not discharge patient");
+    }
   }
 
   ngOnInit(): void {

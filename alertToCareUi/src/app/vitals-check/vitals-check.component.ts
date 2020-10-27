@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-vitals-check',
@@ -13,6 +13,7 @@ export class VitalsCheckComponent implements OnInit {
 
   constructor(
     private route : ActivatedRoute,
+    private router: Router,
     private http : HttpClient
   ) { }
 
@@ -43,7 +44,7 @@ export class VitalsCheckComponent implements OnInit {
       if(!flag){
         window.alert("All vitals are normal");
       }
-      
+      this.router.navigate(['/icus']);
     })
   }
 

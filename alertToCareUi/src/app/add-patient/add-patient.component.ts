@@ -27,9 +27,10 @@ export class AddPatientComponent implements OnInit {
       bed:{
         bedId:this.bedId
       }
-    }).toPromise().then((data: any) => { })
-    
-    this.router.navigate([`/icus`]);
+    }).toPromise().then((data: any) => { 
+      window.alert("Patient admitted.")
+      this.router.navigate([`/icus`]);
+    })    
   }
 
   ngOnInit(): void {
